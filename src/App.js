@@ -4,7 +4,7 @@ import Home from "./pages/Home";
 import About from "./pages/About";
 import Header from "./components/Header";
 import NotFound from "./pages/NotFound";
-import Courses from "./pages/Courses";
+import ConnectedCourses from "./pages/Courses";
 
 export default function App() {
   return (
@@ -14,7 +14,7 @@ export default function App() {
         <Switch>
           <Route exact path="/" component={Home} />
           <Route exact path="/about" component={About} />
-          <Route exact path="/courses" component={Courses} />
+          <Route exact path="/courses" component={ConnectedCourses} />
           <Route component={NotFound} />
         </Switch>
       </div>
