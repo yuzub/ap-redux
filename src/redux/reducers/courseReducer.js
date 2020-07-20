@@ -1,20 +1,24 @@
 import * as actionTypes from "../actions/actionTypes";
+import initialState from "./initialState";
 
-export default function courseReducer(state = [], action) {
+export default function courseReducer(state = initialState.courses, action) {
+  console.log("courseReducer");
   let newState;
   switch (action.type) {
     case actionTypes.CREATE_COURSE:
-      //   debugger;
+      // debugger;
       // state.push(action.course); // this mutates state
       // spread operator to clone state and clone the course passed in
       newState = [...state, { ...action.course }];
       console.log(newState);
       return newState;
-    //   break;
+    case actionTypes.LOAD_COURSE_SUCCESS:
+      console.log("LOAD_COURSE_SUCCESS");
+      console.log(action.courses);
+      return action.courses;
     // important to always declare a default on a Redux reducer
     default:
       return state;
-    //   break;
   }
 }
 

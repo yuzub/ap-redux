@@ -2,14 +2,14 @@ const courses = [
   {
     id: 1,
     title: "Design System in Figma",
-    slug: "design-dystem-in-figma",
+    slug: "online-интенсив-по-figma",
     authorId: 1,
     category: "Design",
   },
   {
     id: 2,
     title: "КУРС C#. Базовый уровень (4 МЕСЯЦА)",
-    slug: "c-basic",
+    slug: "c-base-level",
     authorId: 2,
     category: "C#",
   },
@@ -18,7 +18,7 @@ const courses = [
     title: "КУРС E-commerce (2 МЕСЯЦА)",
     slug: "e-commerce",
     authorId: 3,
-    category: "E-commerce",
+    category: "e-commerce",
   },
   {
     id: 4,
@@ -37,7 +37,7 @@ const courses = [
   {
     id: 6,
     title: "PHP для начинающих (2,5 МЕСЯЦА)",
-    slug: "php-basic",
+    slug: "php-для-начинающих",
     authorId: 6,
     category: "PHP",
   },
