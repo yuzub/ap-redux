@@ -9,6 +9,7 @@ import PropTypes from "prop-types";
 import CourseForm from "../components/CourseForm";
 import { newCourse } from "../../tools/mockData";
 import Spinner from "../components/Spinner";
+import { toast } from "react-toastify"; // method to display the toast
 
 // section 2: Class Component Declaration
 // class ManageCourse extends Component {
@@ -49,6 +50,7 @@ function ManageCourse({
   const [course, setCourse] = useState({ ...props.course });
   // eslint-disable-next-line no-unused-vars
   const [errors, setErrors] = useState({});
+  const [saving, setSaving] = useState(false); // for disable button
 
   useEffect(() => {
     console.log("%cManageCourse useEffect()", "color: orange");
@@ -78,8 +80,11 @@ function ManageCourse({
 
   function handleSave(event) {
     event.preventDefault();
+    setSaving(true);
     saveCourse(course).then(() => {
-      history.push("/courses"); // Reacr Router's history
+      toast.success("Course saved.");
+      history.push("/courses"); // React Router's history
+      // setSaving(false); // don't need because we redirect to another page
     }); // this is passed in on props, so it's already bound to dispatch
     //  and the bound saveCourse on props takes precedence over the unbound saveCourse thunk at the top of file
   }
@@ -93,6 +98,7 @@ function ManageCourse({
       authors={authors}
       onChange={handleChange}
       onSave={handleSave}
+      saving={saving}
     />
   );
 }
