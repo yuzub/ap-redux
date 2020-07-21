@@ -5,13 +5,18 @@ export default function courseReducer(state = initialState.courses, action) {
   console.log("courseReducer");
   let newState;
   switch (action.type) {
-    case actionTypes.CREATE_COURSE:
+    // case actionTypes.CREATE_COURSE:
+    case actionTypes.CREATE_COURSE_SUCCESS:
       // debugger;
       // state.push(action.course); // this mutates state
       // spread operator to clone state and clone the course passed in
       newState = [...state, { ...action.course }];
       console.log(newState);
       return newState;
+    case actionTypes.UPDATE_COURSE_SUCCESS:
+      return state.map((course) =>
+        course.id === action.course.id ? action.course : course
+      );
     case actionTypes.LOAD_COURSE_SUCCESS:
       console.log("LOAD_COURSE_SUCCESS");
       console.log(action.courses);
