@@ -74,27 +74,32 @@ class Courses extends Component {
       <>
         {this.state.redirectToAddCoursePage && <Redirect to="/course" />}
         <h2>Courses</h2>
-        <Spinner />
-        <button
-          style={{ marginBottom: 20 }}
-          className="btn btn-primary add-course"
-          onClick={() => this.setState({ redirectToAddCoursePage: true })}
-        >
-          Add Course
-        </button>
-        <CourseList courses={this.props.courses} />
+        {this.props.loading ? (
+          <Spinner />
+        ) : (
+          <>
+            <button
+              style={{ marginBottom: 20 }}
+              className="btn btn-primary add-course"
+              onClick={() => this.setState({ redirectToAddCoursePage: true })}
+            >
+              Add Course
+            </button>
+            <CourseList courses={this.props.courses} />
+          </>
+        )}
         {/* {this.props.courses.map((course) => (
           <div key={course.title}>{course.title}</div>
         ))} */}
         {/* <form onSubmit={this.handleSubmit}>
-          <h3>Add Course</h3>
-          <input
-            type="text"
-            onChange={this.handleChange}
-            value={this.state.course.title}
-          />
-          <input type="submit" value="Save"></input>
-        </form> */}
+        <h3>Add Course</h3>
+        <input
+        type="text"
+        onChange={this.handleChange}
+        value={this.state.course.title}
+        />
+        <input type="submit" value="Save"></input>
+      </form> */}
       </>
     );
   }
@@ -109,6 +114,7 @@ Courses.propTypes = {
   // createCourse: PropTypes.func.isRequired,
   // var 3
   actions: PropTypes.object.isRequired,
+  loading: PropTypes.bool.isRequired,
 };
 
 // function mapStateToProps(state, ownProps) {
@@ -116,8 +122,7 @@ function mapStateToProps(state) {
   console.log("%ccourses mapStateToProps()", "color: lightblue");
   console.log("state", state);
   // debugger;
-
-  return {
+  const stateToPropsResult = {
     // courses: state.courses,
     courses:
       state.authors.length === 0
@@ -130,7 +135,10 @@ function mapStateToProps(state) {
             };
           }),
     authors: state.authors,
+    loading: state.apiCallsInProgress > 0,
   };
+
+  return stateToPropsResult;
 }
 
 function mapDispatchToProps(dispatch) {

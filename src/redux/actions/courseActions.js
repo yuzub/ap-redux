@@ -1,5 +1,6 @@
 import * as actionTypes from "./actionTypes";
 import * as courseApi from "../../api/courseApi";
+import { beginApiCall } from "./apiStatusActions";
 
 // this function is called the "action creator"
 // export function createCourse(course) {
@@ -28,6 +29,7 @@ export function updateCourseSuccess(course) {
 export function loadCourses() {
   console.log("courseActions loadCourses 1");
   return function (dispatch) {
+    dispatch(beginApiCall()); // call beginAPI in thunk
     return courseApi
       .getCourses()
       .then((courses) => {
@@ -44,6 +46,7 @@ export function saveCourse(course) {
   console.log("courseActions saveCourse 1");
   // eslint-disable-next-line no-unused-vars
   return function (dispatch, getState) {
+    dispatch(beginApiCall()); // call beginAPI in thunk
     return courseApi
       .saveCourse(course)
       .then((savedCourse) => {

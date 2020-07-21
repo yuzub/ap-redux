@@ -8,6 +8,7 @@ import { loadAuthors } from "../redux/actions/authorActions";
 import PropTypes from "prop-types";
 import CourseForm from "../components/CourseForm";
 import { newCourse } from "../../tools/mockData";
+import Spinner from "../components/Spinner";
 
 // section 2: Class Component Declaration
 // class ManageCourse extends Component {
@@ -83,7 +84,9 @@ function ManageCourse({
     //  and the bound saveCourse on props takes precedence over the unbound saveCourse thunk at the top of file
   }
 
-  return (
+  return authors.length === 0 || courses.length === 0 ? (
+    <Spinner />
+  ) : (
     <CourseForm
       course={course}
       errors={errors}
